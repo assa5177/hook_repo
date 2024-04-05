@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+      function onOutsideClick(event) {
+    const ele = document.getElementById("showHideContent");
+    const btn = document.getElementById("showHideButton");
+    if (!ele.contains(event.target) && event.target !== btn) {
+        ele.style.display = "none";
+        btn.style.display = "block";
+        document.removeEventListener("click", onOutsideClick);
+    }
+}
+
+        function showHideContent() {
+            const ele = document.getElementById("showHideContent");
+            const btn = document.getElementById("showHideButton")
+            if (ele) {
+                ele.style.display = "flex"
+                ele.style.flexDirection="column"
+                ele.style.alignItems="center"
+                ele.style.border="1px solid #333"
+                ele.style.borderRadius="4px"
+                btn.style.display="none"
+                
+                document.addEventListener("click", onOutsideClick)
+            } 
+        }
+    </script>
+</head>
+<body style="display: flex; align-items: center; flex-direction: column;">
+    <h1>USE FETCH HOOK</h1>
+    {% for x in student_list %}
+     <div>{{ x.name }}</div>
+    {% endfor %}
+    <button onclick="showHideContent()" id="showHideButton">show content</button>
+    <div id="showHideContent" style="display: none;">
+        <h1>This is a random content</h1>
+        <p>Please click out side of this to close this. it won't close if you click inside of this content</p>
+    </div>
+    
+    <h1>USE WINDOW RESIZE HOOK</h1>
+</html>
